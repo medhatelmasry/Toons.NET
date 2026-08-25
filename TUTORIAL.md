@@ -330,8 +330,3 @@ If you like, you get get AI to write these instructions for you.
 Invoke the analyser instructions by entering the `/Researcher` prompt in the chat window.
 
 ![Researcher](images/researcher.png)
-
-## Plugins
-
-Agent plugins are prepackaged bundles of agent customizations that you can discover and install from plugin marketplaces in Visual Studio Code. Plugins work alongside your locally defined customizations. When you install a plugin, its supported customizations appear in chat.
-
