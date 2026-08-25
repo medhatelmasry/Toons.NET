@@ -1,4 +1,4 @@
-# Coding with AI Agent Skills in VS Code
+# AI Instructions, Agent Skills and Prompt Files in VS Code
 Agent skills are folders of instructions, scripts, and resources that GitHub Copilot can load when relevant to perform specialized tasks.
 
 You can think of agents skills as the micro-services of AI.
