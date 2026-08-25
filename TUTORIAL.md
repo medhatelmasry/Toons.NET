@@ -297,7 +297,7 @@ A new `SKILL.md` file is added to your project under `./github/skills` folder:
 
 ![update-readme](images/update-readme.png)
 
-Let us add feature to test it out. Add this prompt in the chat windows:
+Let us add a feature to test it out. Add this prompt in the chat windows:
 
 ```prompt
 Add a new feature that allows the list of toons to be sorted by id, first, last, gender, or occupation.
