@@ -269,7 +269,7 @@ public enum Gender
 
 ## Built-in skills and agents in VS Code
 
-First, we will ask copilot chat to add a README.md file to our project with this prompt.
+First, we will ask copilot chat to add a `README.md` file to our project with this prompt.
 
 ```prompt
 Add a README.md file with relevant information about the current project.
