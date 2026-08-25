@@ -1,9 +1,4 @@
 # AI Instructions, Agent Skills and Prompt Files in VS Code
-Agent skills are folders of instructions, scripts, and resources that GitHub Copilot can load when relevant to perform specialized tasks.
-
-You can think of agents skills as the micro-services of AI.
-
-Agent skills are an open standard that work across multiple Al agents, including GitHub Copilot and VS Code, Copilot CLI, and Copilot Cloud Agent.
 
 In this tutorail we will use a very simple C# console application to reinforce some of the concepts pertaining to coding with AI in VS Code. 
 
@@ -108,6 +103,12 @@ Note this interaction when you prompt the AI chat with “Hello”:
 You should put your team coding standards in the `copilot-instructions.md` file. You may also wish to put this file at a workspace level, rather than a project level.
 
 ## Skills
+
+Agent skills are folders of instructions, scripts, and resources that GitHub Copilot can load when relevant to perform specialized tasks.
+
+You can think of agents skills as the micro-services of AI.
+
+Agent skills are an open standard that work across multiple Al agents, including GitHub Copilot and VS Code, Copilot CLI, and Copilot Cloud Agent.
 
 In folder `./github/skills/hello-world`, add a file named `SKILL.md` with this text:
 
