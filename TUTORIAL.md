@@ -69,7 +69,7 @@ public enum Gender {
 }
 ```
 
-To see waht it does, run the application by entering the following command:
+To see waht it does, run the application by entering the following command in a terminal window inside the `Toons.Net` folder:
 
 ```bash
 dotnet run
