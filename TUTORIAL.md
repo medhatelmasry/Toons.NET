@@ -2,7 +2,7 @@
 
 In this tutorail we will use a very simple C# console application to reinforce some of the concepts pertaining to coding with AI in VS Code. 
 
-Create a new console app and open it code in VS Code with the following terminal window commands:
+Create a new console app and open it in VS Code with the following terminal window commands:
 
 ```bash
 dotnet new console -o Toons.Net
