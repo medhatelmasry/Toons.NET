@@ -152,31 +152,6 @@ Console.WriteLine("""
 """);
 ```
 
-## Prompt files
-
-Prompt files, also known as slash commands, let you simplify prompting for common tasks by encoding them as standalone Markdown files that you can invoke directly in chat. Each prompt file includes task-specific context and guidelines about how the task should be performed.
-
-In folder `./github/prompts`, add a file named `code-review-analyzer.md` with this text:
-
-```md
----
-name: Researcher
-description: Research codebase patterns and gather context
-tools: ['read', 'search']
-model: Claude Sonnet 4.5 (copilot)
-user-invocable: true
----
-Research the existing codebase for relevant files, functions, and patterns.
-Return a concise summary of your findings, including links to relevant code sections.
-Report on any insights that may help in implementing new features.
-```
-
-If you like, you get get AI to write these instructions for you.
-
-Invoke the analyser instructions by entering the `/Researcher` prompt in the chat window.
-
-![Researcher](images/researcher.png)
-
 A good site to visit to get skills, instructions, plugins, and agents for VS Code is [https://github.com/github/awesome-copilot](https://github.com/github/awesome-copilot). Point your browser to that site then navigate to `/skills/dotnet-best-practices`. Have a look at the content of the `SKILL.md` file:
 
 ![best practices](images/best-practices.png)    
@@ -330,6 +305,31 @@ Add a new feature that allows the list of toons to be sorted by id, first, last,
 After the feature is added, you will notice that the README.md file gets updated:
 
 ![sorting](images/sorting.png)
+
+## Prompt files
+
+Prompt files, also known as slash commands, let you simplify prompting for common tasks by encoding them as standalone Markdown files that you can invoke directly in chat. Each prompt file includes task-specific context and guidelines about how the task should be performed.
+
+In folder `./github/prompts`, add a file named `code-review-analyzer.md` with this text:
+
+```md
+---
+name: Researcher
+description: Research codebase patterns and gather context
+tools: ['read', 'search']
+model: Claude Sonnet 4.5 (copilot)
+user-invocable: true
+---
+Research the existing codebase for relevant files, functions, and patterns.
+Return a concise summary of your findings, including links to relevant code sections.
+Report on any insights that may help in implementing new features.
+```
+
+If you like, you get get AI to write these instructions for you.
+
+Invoke the analyser instructions by entering the `/Researcher` prompt in the chat window.
+
+![Researcher](images/researcher.png)
 
 ## Plugins
 
