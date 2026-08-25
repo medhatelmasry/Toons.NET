@@ -5,7 +5,7 @@ You can think of agents skills as the micro-services of AI.
 
 Agent skills are an open standard that work across multiple Al agents, including GitHub Copilot and VS Code, Copilot CLI, and Copilot Cloud Agent.
 
-In this tutorail we will develop a very simple C# console application which will be used to reinforce some of the concepts pertaining to coding with AI in VS Code. 
+In this tutorail we will use a very simple C# console application to reinforce some of the concepts pertaining to coding with AI in VS Code. 
 
 Create a new console app and open it code in VS Code with the following terminal window commands:
 
@@ -74,11 +74,17 @@ public enum Gender {
 }
 ```
 
+To see waht it does, run the application by entering the following command:
+
+```bash
+dotnet run
+```
+
 ## Custom Instructions
 
 Custom instructions enable you to define common guidelines and rules that automatically influence how AI generates code and handles other development tasks. Instead of manually including context in every chat prompt, specify custom instructions in a Markdown file to ensure consistent AI responses that align with your coding practices and project requirements.
 
-In a `./github` folder, add a file named `copilot-instructions.md` with this text:
+In a `./github` folder, add a file named `copilot-instructions.md` with this text that provides some coding principles and the manner by which AI will refer to you as `Sensei`:
 
 ```md
 # Please call me Sensei and speak with the calm discipline of a samurai.
@@ -99,7 +105,9 @@ Note this interaction when you prompt the AI chat with “Hello”:
 
 ![Sensei](images/sensei.png)
 
-You should put your team coding standards in the copilot-instructions.md file. You may also wish to put this file at a workspace level, rather than a project level.
+You should put your team coding standards in the `copilot-instructions.md` file. You may also wish to put this file at a workspace level, rather than a project level.
+
+## Skills
 
 In folder `./github/skills/hello-world`, add a file named `SKILL.md` with this text:
 
