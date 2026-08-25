@@ -289,6 +289,12 @@ public enum Gender
 
 ## Built-in skills and agents in VS Code
 
+First, we will ask copilot chat to add a README.md file to our project with this prompt.
+
+```prompt
+Add a README.md file with relevant information about the current project.
+```
+
 View the built-in skills in VS Code by clicking the gear icon in the chat window:
 
 ![gear](images/gear.png)
@@ -301,3 +307,22 @@ Click on `create-skill` to view details of the agent skill. This opens the relev
 
 ![skill](images/skill.png)
 
+Let’s use `create-skill` in our software project. In the chat window, enter this prompt:
+
+```prompt
+/create-skill that will update the README.md file whenever a feature is added to the project.
+```
+
+A new `SKILL.md` file is added to your project under `./github/skills` folder:
+
+![update-readme](images/update-readme.png)
+
+Let us add feature to test it out. Add this prompt in the chat windows:
+
+```prompt
+Add a new feature that allows the list of toons to be sorted by id, first, last, gender, or occupation.
+```
+
+After the feature is added, you will notice that the README.md file gets updated:
+
+![sorting](images/sorting.png)
