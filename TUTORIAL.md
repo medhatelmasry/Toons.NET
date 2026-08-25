@@ -177,10 +177,6 @@ Invoke the analyser instructions by entering the `/Researcher` prompt in the cha
 
 ![Researcher](images/researcher.png)
 
-## Plugins
-
-Agent plugins are prepackaged bundles of agent customizations that you can discover and install from plugin marketplaces in Visual Studio Code. Plugins work alongside your locally defined customizations. When you install a plugin, its supported customizations appear in chat.
-
 A good site to visit to get skills, instructions, plugins, and agents for VS Code is [https://github.com/github/awesome-copilot](https://github.com/github/awesome-copilot). Point your browser to that site then navigate to `/skills/dotnet-best-practices`. Have a look at the content of the `SKILL.md` file:
 
 ![best practices](images/best-practices.png)    
@@ -334,3 +330,8 @@ Add a new feature that allows the list of toons to be sorted by id, first, last,
 After the feature is added, you will notice that the README.md file gets updated:
 
 ![sorting](images/sorting.png)
+
+## Plugins
+
+Agent plugins are prepackaged bundles of agent customizations that you can discover and install from plugin marketplaces in Visual Studio Code. Plugins work alongside your locally defined customizations. When you install a plugin, its supported customizations appear in chat.
+
