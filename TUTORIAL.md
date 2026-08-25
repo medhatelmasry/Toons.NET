@@ -1,7 +1,9 @@
 # Coding with AI Agent Skills in VS Code
 Agent skills are folders of instructions, scripts, and resources that GitHub Copilot can load when relevant to perform specialized tasks.
 
-These skills are an open standard that work across multiple Al agents, including GitHub Copilot and VS Code, Copilot CLI, and Copilot Cloud Agent.
+You can think of agents skills as the micro-services of AI.
+
+Agent skills are an open standard that work across multiple Al agents, including GitHub Copilot and VS Code, Copilot CLI, and Copilot Cloud Agent.
 
 In this tutorail we will develop a very simple C# console application which will be used to reinforce some of the concepts pertaining to coding with AI in VS Code. 
 
@@ -72,6 +74,10 @@ public enum Gender {
 }
 ```
 
+## Custom Instructions
+
+Custom instructions enable you to define common guidelines and rules that automatically influence how AI generates code and handles other development tasks. Instead of manually including context in every chat prompt, specify custom instructions in a Markdown file to ensure consistent AI responses that align with your coding practices and project requirements.
+
 In a `./github` folder, add a file named `copilot-instructions.md` with this text:
 
 ```md
@@ -118,4 +124,56 @@ When invoked, output exactly this line:
 
 > [!NOTE]
 > It is mandatory to provide `name` and `description`.
+
+Enter the prompt in the chat window:
+
+```txt
+add a simple Hello World response in ASCII text to Program.cs
+```
+
+It will add this code to `Program.cs`:
+
+```C#
+Console.WriteLine("""
+ _   _      _ _                             _     _ _
+| | | | ___| | | ___    __      _____  _ __| | __| | |
+| |_| |/ _ \ | |/ _ \   \ \ /\ / / _ \| '__| |/ _` | |
+|  _  |  __/ | | (_) |   \ V  V / (_) | |  | | (_| |_|
+|_| |_|\___|_|_|\___( )   \_/\_/ \___/|_|  |_\__,_(_)
+                    |/
+""");
+```
+
+## Prompt files
+
+Prompt files, also known as slash commands, let you simplify prompting for common tasks by encoding them as standalone Markdown files that you can invoke directly in chat. Each prompt file includes task-specific context and guidelines about how the task should be performed.
+
+In folder `./github/prompts`, add a file named `code-review-analyzer.md` with this text:
+
+```md
+---
+name: Researcher
+description: Research codebase patterns and gather context
+tools: ['read', 'search']
+model: Claude Sonnet 4.5 (copilot)
+user-invocable: true
+---
+Research the existing codebase for relevant files, functions, and patterns.
+Return a concise summary of your findings, including links to relevant code sections.
+Report on any insights that may help in implementing new features.
+```
+
+If you like, you get get AI to write these instructions for you.
+
+Invoke the analyser instructions by entering the `/Researcher` prompt in the chat window.
+
+![Researcher](images/researcher.png)
+
+## Plugins
+
+Agent plugins are prepackaged bundles of agent customizations that you can discover and install from plugin marketplaces in Visual Studio Code. Plugins work alongside your locally defined customizations. When you install a plugin, its supported customizations appear in chat.
+
+A good site to visit to get skills, instructions, plugins, and agents for VS Code is `https://github.com/github/awesome-copilot`. 
+
+
 
