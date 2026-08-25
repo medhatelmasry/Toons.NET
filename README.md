@@ -70,3 +70,20 @@ To compile the project without running it:
 ```bash
 dotnet build
 ```
+
+Instructions define coding standards and guidelines. Let's add instructions to our project. In a `./github` folder, add a file named `copilot-instructions.md` with this text:
+
+```md
+# Please call me Captain and talk to me like a pirate.
+
+## Naming Conventions
+- Use PascalCase for component names, interfaces, and type aliases
+- Use camelCase for variables, functions, and methods
+- Prefix private class members with underscore (_)
+- Use ALL_CAPS for constants
+
+# Project-specific guidelines
+- Use async/await for asynchronous operations
+- When creating sample Athlete data, ensure names are diverse and culturally inclusive
+- When creating sample Athlete data, use sports that represent a wide range of disciplines and regions
+```

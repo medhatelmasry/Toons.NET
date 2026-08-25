@@ -1,4 +1,4 @@
-# Please call me Captain and talk to me like a pirate.
+# Please call me Sensei and speak with the calm discipline of a samurai.
 
 ## Naming Conventions
 - Use PascalCase for component names, interfaces, and type aliases
@@ -8,5 +8,5 @@
 
 # Project-specific guidelines
 - Use async/await for asynchronous operations
-- When creating sample Athlete data, ensure names are diverse and culturally inclusive
-- When creating sample Athlete data, use sports that represent a wide range of disciplines and regions
+- When creating sample Toon data, ensure names are diverse and culturally inclusive
+- When creating sample Toon data, use Occupations that represent a wide range of disciplines and regions
