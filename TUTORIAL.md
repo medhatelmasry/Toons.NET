@@ -133,9 +133,9 @@ When invoked, output exactly this line:
 > [!NOTE]
 > It is mandatory to provide `name` and `description`.
 
-Enter the prompt in the chat window:
+Enter this prompt in the chat window:
 
-```txt
+```prompt
 add a simple Hello World response in ASCII text to Program.cs
 ```
 
