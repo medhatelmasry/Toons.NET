@@ -1,0 +1,289 @@
+<h1 id="ai-instructions-agent-skills-and-prompt-files-in-vs-code">AI Instructions, Agent Skills and Prompt Files in VS
+    Code</h1>
+<p>In this tutorail we will use a very simple C# console application to reinforce some of the concepts pertaining to
+    coding with AI in VS Code. </p>
+<p>Create a new console app and open it in VS Code with the following terminal window commands:</p>
+<pre><code class="lang-bash">dotnet new console -o Toons<span class="hljs-selector-class">.Net</span>
+cd Toons<span class="hljs-selector-class">.Net</span>
+<span class="hljs-selector-tag">code</span> .
+</code></pre>
+<p>Replace contents of <code>Program.cs</code> with:</p>
+<pre><code class="lang-C#">Toon[] toons = {
+    <span class="hljs-keyword">new</span>() {
+        ID = <span class="hljs-number">1</span>,
+        First = <span class="hljs-string">"Barney"</span>,
+        Last = <span class="hljs-string">"Rubble"</span>,
+        Gender = Gender.Male,
+        Occupation = <span class="hljs-string">"Mining Assistant"</span>
+    },
+    <span class="hljs-keyword">new</span>() {
+        ID = <span class="hljs-number">2</span>,
+        First = <span class="hljs-string">"Betty"</span>,
+        Last = <span class="hljs-string">"Rubble"</span>,
+        Gender = Gender.Female,
+        Occupation = <span class="hljs-string">"Nurse"</span> },
+    <span class="hljs-keyword">new</span>() {
+        ID = <span class="hljs-number">3</span>,
+        First = <span class="hljs-string">"Fred"</span>,
+        Last = <span class="hljs-string">"Flintstone"</span>,
+        Gender = Gender.Male,
+        Occupation = <span class="hljs-string">"Mining Manager"</span> },
+    <span class="hljs-keyword">new</span>() {
+        ID = <span class="hljs-number">4</span>,
+        First = <span class="hljs-string">"Wilma"</span>,
+        Last = <span class="hljs-string">"Flintstone"</span>,
+        Gender = Gender.Female,
+        Occupation = <span class="hljs-string">"Teacher"</span> },
+    <span class="hljs-keyword">new</span>() {
+        ID = <span class="hljs-number">5</span>,
+        First = <span class="hljs-string">"Pebbles"</span>,
+        Last = <span class="hljs-string">"Flintstone"</span>,
+        Gender = Gender.Female,
+        Occupation = <span class="hljs-string">"Toddler"</span> },
+};
+
+<span class="hljs-keyword">foreach</span> (<span class="hljs-keyword">var</span> item <span class="hljs-keyword">in</span> toons) {
+    Console.Write(<span class="hljs-string">$"ID: <span class="hljs-subst">{item.ID}</span>, "</span>);
+    Console.Write(<span class="hljs-string">$"First: <span class="hljs-subst">{item.First}</span>, "</span>);
+    Console.Write(<span class="hljs-string">$"Last: <span class="hljs-subst">{item.Last}</span>, "</span>);
+    Console.Write(<span class="hljs-string">$"Gender: <span class="hljs-subst">{item.Gender}</span>, "</span>);
+    Console.WriteLine(<span class="hljs-string">$"Occupation: <span class="hljs-subst">{item.Occupation}</span>"</span>);
+}
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Toon</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> ID { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; }
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">string</span>? First { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; }
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">string</span>? Last { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; }
+    <span class="hljs-keyword">public</span> Gender Gender { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; }
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">string</span>? Occupation { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; }
+}
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">enum</span> Gender {
+    Male,
+    Female
+}
+</code></pre>
+<p>To see waht it does, run the application by entering the following command in a terminal window inside the
+    <code>Toons.Net</code> folder:</p>
+<pre><code class="lang-bash">dotnet <span class="hljs-keyword">run</span><span class="bash"></span>
+</code></pre>
+<h2 id="custom-instructions">Custom Instructions</h2>
+<p>Custom instructions enable you to define common guidelines and rules that automatically influence how AI generates
+    code and handles other development tasks. Instead of manually including context in every chat prompt, specify custom
+    instructions in a Markdown file to ensure consistent AI responses that align with your coding practices and project
+    requirements.</p>
+<p>In a <code>./github</code> folder, add a file named <code>copilot-instructions.md</code> with this text that provides
+    some coding principles and the manner by which AI will refer to you as <code>Sensei</code>:</p>
+<pre><code class="lang-md"># Please call me Sensei <span class="hljs-keyword">and</span> speak <span class="hljs-keyword">with</span> the calm discipline <span class="hljs-keyword">of</span> a samurai.
+
+## Naming Conventions
+- <span class="hljs-keyword">Use</span> PascalCase <span class="hljs-keyword">for</span> component names, interfaces, <span class="hljs-keyword">and</span> <span class="hljs-keyword">type</span> <span class="hljs-type">aliases
+</span>- <span class="hljs-keyword">Use</span> camelCase <span class="hljs-keyword">for</span> variables, functions, <span class="hljs-keyword">and</span> methods
+- Prefix <span class="hljs-keyword">private</span> class members <span class="hljs-keyword">with</span> underscore (_)
+- <span class="hljs-keyword">Use</span> ALL_CAPS <span class="hljs-keyword">for</span> constants
+
+# Project-specific guidelines
+- <span class="hljs-keyword">Use</span> async/await <span class="hljs-keyword">for</span> asynchronous operations
+- <span class="hljs-keyword">When</span> creating sample Toon data, ensure names are diverse <span class="hljs-keyword">and</span> culturally inclusive
+- <span class="hljs-keyword">When</span> creating sample Toon data, <span class="hljs-keyword">use</span> Occupations that represent a wide <span class="hljs-keyword">range</span> <span class="hljs-keyword">of</span> disciplines <span class="hljs-keyword">and</span> regions
+</code></pre>
+<p>Note this interaction when you prompt the AI chat with “Hello”:</p>
+<p><img src="images/sensei.png" alt="Sensei"></p>
+<p>You should put your team coding standards in the <code>copilot-instructions.md</code> file. You may also wish to put
+    this file at a workspace level, rather than a project level.</p>
+<h2 id="skills">Skills</h2>
+<p>Agent skills are folders of instructions, scripts, and resources that GitHub Copilot can load when relevant to
+    perform specialized tasks.</p>
+<p>You can think of agents skills as the micro-services of AI.</p>
+<p>Agent skills are an open standard that work across multiple Al agents, including GitHub Copilot and VS Code, Copilot
+    CLI, and Copilot Cloud Agent.</p>
+<p>In folder <code>./github/skills/hello-world</code>, add a file named <code>SKILL.md</code> with this text:</p>
+<pre><code class="lang-md">---
+name: hello-world
+description: <span class="hljs-string">"Use when: you want a simple Hello World response in ASCII text."</span>
+---
+<span class="hljs-comment"># Hello World</span>
+
+<span class="hljs-keyword">When</span> invoked, output exactly this line:
+
+ _   _      _ _                             _     _ _
+|<span class="hljs-string"> </span>|<span class="hljs-string"> </span>|<span class="hljs-string"> </span>|<span class="hljs-string"> ___</span>|<span class="hljs-string"> </span>|<span class="hljs-string"> </span>|<span class="hljs-string"> ___    __      _____  _ __</span>|<span class="hljs-string"> </span>|<span class="hljs-string"> __</span>|<span class="hljs-string"> </span>|<span class="hljs-string"> </span>|
+|<span class="hljs-string"> </span>|<span class="hljs-string">_</span>|<span class="hljs-string"> </span>|<span class="hljs-string">/ _ \ </span>|<span class="hljs-string"> </span>|<span class="hljs-string">/ _ \   \ \ /\ / / _ \</span>|<span class="hljs-string"> '__</span>|<span class="hljs-string"> </span>|<span class="hljs-string">/ _` </span>|<span class="hljs-string"> </span>|
+|<span class="hljs-string">  _  </span>|<span class="hljs-string">  __/ </span>|<span class="hljs-string"> </span>|<span class="hljs-string"> (_) </span>|<span class="hljs-string">   \ V  V / (_) </span>|<span class="hljs-string"> </span>|<span class="hljs-string">  </span>|<span class="hljs-string"> </span>|<span class="hljs-string"> (_</span>|<span class="hljs-string"> </span>|<span class="hljs-string">_</span>|
+|<span class="hljs-string">_</span>|<span class="hljs-string"> </span>|<span class="hljs-string">_</span>|<span class="hljs-string">\___</span>|<span class="hljs-string">_</span>|<span class="hljs-string">_</span>|<span class="hljs-string">\___( )   \_/\_/ \___/</span>|<span class="hljs-string">_</span>|<span class="hljs-string">  </span>|<span class="hljs-string">_</span>|<span class="hljs-string">\__,_(_)</span>
+</code></pre>
+<blockquote>
+    <p>[!NOTE]
+        The <code>name</code> of the skill must exactly match the folder name.</p>
+    <p>[!NOTE]
+        It is mandatory to provide <code>name</code> and <code>description</code>.</p>
+</blockquote>
+<p>Enter this prompt in the chat window:</p>
+<pre><code class="lang-prompt"><span class="hljs-built_in">add</span> <span class="hljs-keyword">a</span> simple Hello World response <span class="hljs-keyword">in</span> ASCII <span class="hljs-keyword">text</span> <span class="hljs-built_in">to</span> Program.cs
+</code></pre>
+<p>It will add this code to <code>Program.cs</code>:</p>
+<pre><code class="lang-C#">Console.WriteLine("""
+ _   _      _ _                             _     _ _
+| | | | ___| | | ___    __      _____  _ __| | __| | |
+| |_| |/ _ <span class="hljs-symbol">\ </span>| |/ _ <span class="hljs-symbol">\ </span>  <span class="hljs-symbol">\ </span><span class="hljs-symbol">\ </span>/<span class="hljs-symbol">\ </span>/ / _ <span class="hljs-symbol">\|</span> '__| |/ _` | |
+|  _  |  __/ | | (_) |   <span class="hljs-symbol">\ </span>V  V / (_) | |  | | (_| |_|
+|_| |_|<span class="hljs-symbol">\_</span>__|_|_|<span class="hljs-symbol">\_</span>__( )   <span class="hljs-symbol">\_</span>/<span class="hljs-symbol">\_</span>/ <span class="hljs-symbol">\_</span>__/|_|  |_<span class="hljs-symbol">\_</span>_,_(_)
+                    |/
+""");
+</code></pre>
+<p>A good site to visit to get skills, instructions, plugins, and agents for VS Code is <a
+        href="https://github.com/github/awesome-copilot">https://github.com/github/awesome-copilot</a>. Point your
+    browser to that site then navigate to <code>/skills/dotnet-best-practices</code>. Have a look at the content of the
+    <code>SKILL.md</code> file:</p>
+<p><img src="images/best-practices.png" alt="best practices"> </p>
+<p>Visiting <a href="https://github.com/github/awesome-copilot">https://github.com/github/awesome-copilot</a> is a good
+    starting point for creating these .md files that will make you very efficient in your journey developing software
+    with AI. Create a folder <code>./github/skills/dotnet-best-practices</code> and add to it the <code>SKILL.md</code>
+    file. Go ahead and edit it as you see fit.</p>
+<p>Add this prompt to the chat window:</p>
+<pre><code class="lang-text">Apply /dotnet-best-practices to <span class="hljs-keyword">this</span> project
+</code></pre>
+<p>This results in best practices being applied to your project. I noticed extensive documentation being added to
+    <code>Program.cs</code>:</p>
+<pre><code class="lang-C#">Console.WriteLine(<span class="hljs-string">"""
+ _   _      _ _                             _     _ _
+| | | | ___| | | ___    __      _____  _ __| | __| | |
+| |_| |/ _ \ | |/ _ \   \ \ /\ / / _ \| '__| |/ _` | |
+|  _  |  __/ | | (_) |   \ V  V / (_) | |  | | (_| |_|
+|_| |_|\___|_|_|\___( )   \_/\_/ \___/|_|  |_|\__,_(_)
+"""</span>);
+
+Toon[] toons = {
+    <span class="hljs-keyword">new</span>() {
+        ID = <span class="hljs-number">1</span>,
+        First = <span class="hljs-string">"Barney"</span>,
+        Last = <span class="hljs-string">"Rubble"</span>,
+        Gender = Gender.Male,
+        Occupation = <span class="hljs-string">"Mining Assistant"</span>
+    },
+    <span class="hljs-keyword">new</span>() {
+        ID = <span class="hljs-number">2</span>,
+        First = <span class="hljs-string">"Betty"</span>,
+        Last = <span class="hljs-string">"Rubble"</span>,
+        Gender = Gender.Female,
+        Occupation = <span class="hljs-string">"Nurse"</span> },
+    <span class="hljs-keyword">new</span>() {
+        ID = <span class="hljs-number">3</span>,
+        First = <span class="hljs-string">"Fred"</span>,
+        Last = <span class="hljs-string">"Flintstone"</span>,
+        Gender = Gender.Male,
+        Occupation = <span class="hljs-string">"Mining Manager"</span> },
+    <span class="hljs-keyword">new</span>() {
+        ID = <span class="hljs-number">4</span>,
+        First = <span class="hljs-string">"Wilma"</span>,
+        Last = <span class="hljs-string">"Flintstone"</span>,
+        Gender = Gender.Female,
+        Occupation = <span class="hljs-string">"Teacher"</span> },
+    <span class="hljs-keyword">new</span>() {
+        ID = <span class="hljs-number">5</span>,
+        First = <span class="hljs-string">"Pebbles"</span>,
+        Last = <span class="hljs-string">"Flintstone"</span>,
+        Gender = Gender.Female,
+        Occupation = <span class="hljs-string">"Toddler"</span> },
+};
+
+<span class="hljs-keyword">foreach</span> (<span class="hljs-keyword">var</span> item in toons)
+{
+    Console.Write($<span class="hljs-string">"ID: {item.ID}, "</span>);
+    Console.Write($<span class="hljs-string">"First: {item.First}, "</span>);
+    Console.Write($<span class="hljs-string">"Last: {item.Last}, "</span>);
+    Console.Write($<span class="hljs-string">"Gender: {item.Gender}, "</span>);
+    Console.WriteLine($<span class="hljs-string">"Occupation: {item.Occupation}"</span>);
+}
+
+<span class="hljs-comment">/// &lt;summary&gt;</span>
+<span class="hljs-comment">/// Represents a character in the sample toon collection.</span>
+<span class="hljs-comment">/// &lt;/summary&gt;</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Toon</span>
+</span>{
+    <span class="hljs-comment">/// &lt;summary&gt;</span>
+    <span class="hljs-comment">/// Gets the unique identifier for the toon.</span>
+    <span class="hljs-comment">/// &lt;/summary&gt;</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> ID { <span class="hljs-keyword">get</span>; init; }
+
+    <span class="hljs-comment">/// &lt;summary&gt;</span>
+    <span class="hljs-comment">/// Gets the toon&amp;apos;s first name.</span>
+    <span class="hljs-comment">/// &lt;/summary&gt;</span>
+    <span class="hljs-keyword">public</span> required <span class="hljs-keyword">string</span> First { <span class="hljs-keyword">get</span>; init; }
+
+    <span class="hljs-comment">/// &lt;summary&gt;</span>
+    <span class="hljs-comment">/// Gets the toon&amp;apos;s last name.</span>
+    <span class="hljs-comment">/// &lt;/summary&gt;</span>
+    <span class="hljs-keyword">public</span> required <span class="hljs-keyword">string</span> Last { <span class="hljs-keyword">get</span>; init; }
+
+    <span class="hljs-comment">/// &lt;summary&gt;</span>
+    <span class="hljs-comment">/// Gets the toon&amp;apos;s gender classification.</span>
+    <span class="hljs-comment">/// &lt;/summary&gt;</span>
+    <span class="hljs-keyword">public</span> required Gender Gender { <span class="hljs-keyword">get</span>; init; }
+
+    <span class="hljs-comment">/// &lt;summary&gt;</span>
+    <span class="hljs-comment">/// Gets the toon&amp;apos;s occupation.</span>
+    <span class="hljs-comment">/// &lt;/summary&gt;</span>
+    <span class="hljs-keyword">public</span> required <span class="hljs-keyword">string</span> Occupation { <span class="hljs-keyword">get</span>; init; }
+}
+
+<span class="hljs-comment">/// &lt;summary&gt;</span>
+<span class="hljs-comment">/// Defines the gender classifications used by the sample data.</span>
+<span class="hljs-comment">/// &lt;/summary&gt;</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">enum</span> Gender
+{
+    <span class="hljs-comment">/// &lt;summary&gt;</span>
+    <span class="hljs-comment">/// Identifies a male toon.</span>
+    <span class="hljs-comment">/// &lt;/summary&gt;</span>
+    Male,
+
+    <span class="hljs-comment">/// &lt;summary&gt;</span>
+    <span class="hljs-comment">/// Identifies a female toon.</span>
+    <span class="hljs-comment">/// &lt;/summary&gt;</span>
+    Female
+}
+</code></pre>
+<h2 id="built-in-skills-and-agents-in-vs-code">Built-in skills and agents in VS Code</h2>
+<p>First, we will ask copilot chat to add a <code>README.md</code> file to our project with this prompt.</p>
+<pre><code class="lang-prompt">Add <span class="hljs-keyword">a</span> README.md <span class="hljs-built_in">file</span> <span class="hljs-keyword">with</span> relevant information about <span class="hljs-keyword">the</span> current project.
+</code></pre>
+<p>View the built-in skills in VS Code by clicking the gear icon in the chat window:</p>
+<p><img src="images/gear.png" alt="gear"></p>
+<p>Find the <code>create-skill</code> under <code>Built-in</code>. </p>
+<p><img src="images/create-skill.png" alt="create-skill"></p>
+<p>Click on <code>create-skill</code> to view details of the agent skill. This opens the relevant <code>SKILL.md</code>
+    file.</p>
+<p><img src="images/skill.png" alt="skill"></p>
+<p>Let’s use <code>create-skill</code> in our software project. In the chat window, enter this prompt:</p>
+<pre><code class="lang-prompt">/<span class="hljs-built_in">create-skill</span> <span class="hljs-string">that </span><span class="hljs-string">will </span><span class="hljs-string">update </span><span class="hljs-string">the </span><span class="hljs-string">README.</span><span class="hljs-string">md </span><span class="hljs-string">file </span><span class="hljs-string">whenever </span>a <span class="hljs-string">feature </span><span class="hljs-string">is </span><span class="hljs-string">added </span><span class="hljs-string">to </span><span class="hljs-string">the </span><span class="hljs-string">project.</span>
+</code></pre>
+<p>A new <code>SKILL.md</code> file is added to your project under <code>./github/skills</code> folder:</p>
+<p><img src="images/update-readme.png" alt="update-readme"></p>
+<p>Let us add a feature to test it out. Add this prompt in the chat window:</p>
+<pre><code class="lang-prompt">Add a new feature <span class="hljs-keyword">that</span> allows <span class="hljs-keyword">the</span> <span class="hljs-built_in">list</span> <span class="hljs-keyword">of</span> toons <span class="hljs-keyword">to</span> be sorted <span class="hljs-keyword">by</span> <span class="hljs-built_in">id</span>, <span class="hljs-keyword">first</span>, <span class="hljs-keyword">last</span>, gender, <span class="hljs-keyword">or</span> occupation.
+</code></pre>
+<p>After the feature is added, you will notice that the README.md file gets updated accordingly:</p>
+<p><img src="images/sorting.png" alt="sorting"></p>
+<h2 id="prompt-files">Prompt files</h2>
+<p>Prompt files, also known as slash commands, let you simplify prompting for common tasks by encoding them as
+    standalone Markdown files that you can invoke directly in chat. Each prompt file includes task-specific context and
+    guidelines about how the task should be performed.</p>
+<p>In folder <code>./github/prompts</code>, add a file named <code>code-review-analyzer.md</code> with this text:</p>
+<pre><code class="lang-md"><span class="hljs-meta">---</span>
+<span class="hljs-attr">name:</span> Researcher
+<span class="hljs-attr">description:</span> Research codebase patterns and gather context
+<span class="hljs-attr">tools:</span> [<span class="hljs-string">'read'</span>, <span class="hljs-string">'search'</span>]
+<span class="hljs-attr">model:</span> Claude Sonnet <span class="hljs-number">4.5</span> (copilot)
+<span class="hljs-attr">user-invocable:</span> <span class="hljs-literal">true</span>
+<span class="hljs-meta">---</span>
+Research the existing codebase for relevant files, functions, and patterns.
+Return a concise summary of your findings, including links to relevant code sections.
+Report on any insights that may help in implementing new features.
+</code></pre>
+<p>If you like, you get get AI to write these instructions for you.</p>
+<p>Invoke the analyser instructions by entering the <code>/Researcher</code> prompt in the chat window.</p>
+<p><img src="images/researcher.png" alt="Researcher"></p>
+<h2 id="conclusion">Conclusion</h2>
+<p>In this tutorial, we have learned the significance of AI Instructions, Agent Skills and Prompt Files in VS Code. The
+    sky is the limit as to how far you can go with these concepts to make your coding experience much more efficient.
+</p>
