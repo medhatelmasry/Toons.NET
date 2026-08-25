@@ -173,7 +173,131 @@ Invoke the analyser instructions by entering the `/Researcher` prompt in the cha
 
 Agent plugins are prepackaged bundles of agent customizations that you can discover and install from plugin marketplaces in Visual Studio Code. Plugins work alongside your locally defined customizations. When you install a plugin, its supported customizations appear in chat.
 
-A good site to visit to get skills, instructions, plugins, and agents for VS Code is `https://github.com/github/awesome-copilot`. 
+A good site to visit to get skills, instructions, plugins, and agents for VS Code is [https://github.com/github/awesome-copilot](https://github.com/github/awesome-copilot). Point your browser to that site then navigate to `/skills/dotnet-best-practices`. Have a look at the content of the `SKILL.md` file:
 
+![best practices](images/best-practices.png)    
 
+Visiting [https://github.com/github/awesome-copilot](https://github.com/github/awesome-copilot) is a good starting point for creating these .md files that will make you very efficient in your journey developing software with AI. Create a folder `./github/skills/dotnet-best-practices` and add to it the `SKILL.md` file. Go ahead and edit it as you see fit.
+
+Add this prompt to the chat window:
+
+```text
+Apply /dotnet-best-practices to this project
+```
+
+This results in best practices being applied to your project. I noticed extensive documentation being added to `Program.cs`:
+
+```C#
+Console.WriteLine("""
+ _   _      _ _                             _     _ _
+| | | | ___| | | ___    __      _____  _ __| | __| | |
+| |_| |/ _ \ | |/ _ \   \ \ /\ / / _ \| '__| |/ _` | |
+|  _  |  __/ | | (_) |   \ V  V / (_) | |  | | (_| |_|
+|_| |_|\___|_|_|\___( )   \_/\_/ \___/|_|  |_|\__,_(_)
+""");
+
+Toon[] toons = {
+    new() {
+        ID = 1,
+        First = "Barney",
+        Last = "Rubble",
+        Gender = Gender.Male,
+        Occupation = "Mining Assistant"
+    },
+    new() {
+        ID = 2,
+        First = "Betty",
+        Last = "Rubble",
+        Gender = Gender.Female,
+        Occupation = "Nurse" },
+    new() {
+        ID = 3,
+        First = "Fred",
+        Last = "Flintstone",
+        Gender = Gender.Male,
+        Occupation = "Mining Manager" },
+    new() {
+        ID = 4,
+        First = "Wilma",
+        Last = "Flintstone",
+        Gender = Gender.Female,
+        Occupation = "Teacher" },
+    new() {
+        ID = 5,
+        First = "Pebbles",
+        Last = "Flintstone",
+        Gender = Gender.Female,
+        Occupation = "Toddler" },
+};
+
+foreach (var item in toons)
+{
+    Console.Write($"ID: {item.ID}, ");
+    Console.Write($"First: {item.First}, ");
+    Console.Write($"Last: {item.Last}, ");
+    Console.Write($"Gender: {item.Gender}, ");
+    Console.WriteLine($"Occupation: {item.Occupation}");
+}
+
+/// <summary>
+/// Represents a character in the sample toon collection.
+/// </summary>
+public class Toon
+{
+    /// <summary>
+    /// Gets the unique identifier for the toon.
+    /// </summary>
+    public int ID { get; init; }
+
+    /// <summary>
+    /// Gets the toon&apos;s first name.
+    /// </summary>
+    public required string First { get; init; }
+
+    /// <summary>
+    /// Gets the toon&apos;s last name.
+    /// </summary>
+    public required string Last { get; init; }
+
+    /// <summary>
+    /// Gets the toon&apos;s gender classification.
+    /// </summary>
+    public required Gender Gender { get; init; }
+
+    /// <summary>
+    /// Gets the toon&apos;s occupation.
+    /// </summary>
+    public required string Occupation { get; init; }
+}
+
+/// <summary>
+/// Defines the gender classifications used by the sample data.
+/// </summary>
+public enum Gender
+{
+    /// <summary>
+    /// Identifies a male toon.
+    /// </summary>
+    Male,
+
+    /// <summary>
+    /// Identifies a female toon.
+    /// </summary>
+    Female
+}
+```
+
+## Built-in skills and agents in VS Code
+
+View the built-in skills in VS Code by clicking the gear icon in the chat window:
+
+![gear](images/gear.png)
+
+Find the `create-skill` under `Built-in`. 
+
+![create-skill](images/create-skill.png)
+
+Click on `create-skill` to view details of the agent skill. This opens the relevant `SKILL.md` file.
+
+![skill](images/skill.png)
 
