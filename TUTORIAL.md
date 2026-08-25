@@ -331,3 +331,7 @@ If you like, you get get AI to write these instructions for you.
 Invoke the analyser instructions by entering the `/Researcher` prompt in the chat window.
 
 ![Researcher](images/researcher.png)
+
+## Conclusion
+
+In this tutorial, we have learned the significance of AI Instructions, Agent Skills and Prompt Files in VS Code. The sky is the limit as to how far you can go with these concepts to make your coding experience much more efficient.
