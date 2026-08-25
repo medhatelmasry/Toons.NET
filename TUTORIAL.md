@@ -303,7 +303,7 @@ Let us add a feature to test it out. Add this prompt in the chat window:
 Add a new feature that allows the list of toons to be sorted by id, first, last, gender, or occupation.
 ```
 
-After the feature is added, you will notice that the README.md file gets updated:
+After the feature is added, you will notice that the README.md file gets updated accordingly:
 
 ![sorting](images/sorting.png)
 
